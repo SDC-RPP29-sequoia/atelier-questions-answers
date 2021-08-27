@@ -1,0 +1,23 @@
+productId: {
+  questionId: {
+    questionId: Number
+    body: String,
+    dateWritten: Number,
+    askerName: String,
+    askerEmail: String,
+    reported: Boolean,
+    helpful: Number,
+    answers: {
+      anwerId: {
+        answerId: Number,
+        body: String,
+        dateWritten: Number,
+        answererName: String,
+        answererEmail: String,
+        reported: Boolean,
+        helpful: Number,
+        photos: []
+      }
+    }
+  }
+}
