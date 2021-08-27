@@ -50,7 +50,7 @@ Security: [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?projec
 
 Lines of Code: [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=SDC-RPP29-sequoia_atelier-questions-answers&metric=ncloc)](https://sonarcloud.io/dashboard?id=SDC-RPP29-sequoia_atelier-questions-answers)
 
-Coverage: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=SDC-RPP29-sequoia_atelier-questions-answers&metric=coverage)](https://sonarcloud.io/dashboard?id=SDC-RPP29-sequoia_atelier-questions-answers)
+Coverage: [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=SDC-RPP29-sequoia_atelier-questions-answers&metric=coverage)](https://sonarcloud.io/dashboard?id=SDC-RPP29-sequoia_atelier-questions-answers)
 
 Bugs: [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=SDC-RPP29-sequoia_atelier-questions-answers&metric=bugs)](https://sonarcloud.io/dashboard?id=SDC-RPP29-sequoia_atelier-questions-answers)
 
