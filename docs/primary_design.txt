@@ -1,0 +1,85 @@
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'question'
+--
+-- ---
+
+DROP TABLE IF EXISTS `question`;
+
+CREATE TABLE `question` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `product_id` INTEGER NOT NULL,
+  `body` VARCHAR(1000) NULL DEFAULT NULL,
+  `date_written` TIMESTAMP NOT NULL,
+  `asker_name` VARCHAR(60) NOT NULL,
+  `asker_email` VARCHAR(60) NOT NULL,
+  `reported` TINYINT NOT NULL,
+  `helpful` INTEGER NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'answer'
+--
+-- ---
+
+DROP TABLE IF EXISTS `answer`;
+
+CREATE TABLE `answer` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `question_id` INTEGER NOT NULL,
+  `body` VARCHAR(1000) NOT NULL,
+  `date_written` TIMESTAMP NOT NULL,
+  `answerer_name` VARCHAR(60) NOT NULL,
+  `answerer_email` VARCHAR(60) NOT NULL,
+  `reported` TINYINT NOT NULL,
+  `helpful` INTEGER NOT NULL,
+  PRIMARY KEY (`id`),
+KEY (`question_id`)
+);
+
+-- ---
+-- Table 'answer_photo'
+--
+-- ---
+
+DROP TABLE IF EXISTS `answer_photo`;
+
+CREATE TABLE `answer_photo` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `answer_id` INTEGER NOT NULL,
+  `url` VARCHAR(2083) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Foreign Keys
+-- ---
+
+ALTER TABLE `answer` ADD FOREIGN KEY (question_id) REFERENCES `question` (`id`);
+ALTER TABLE `answer_photo` ADD FOREIGN KEY (answer_id) REFERENCES `answer` (`id`);
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `question` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `answer` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `answer_photo` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `question` (`id`,`product_id`,`body`,`date_written`,`asker_name`,`asker_email`,`reported`,`helpful`) VALUES
+-- ('','','','','','','','');
+-- INSERT INTO `answer` (`id`,`question_id`,`body`,`date_written`,`answerer_name`,`answerer_email`,`reported`,`helpful`) VALUES
+-- ('','','','','','','','');
+-- INSERT INTO `answer_photo` (`id`,`answer_id`,`url`) VALUES
+-- ('','','');
