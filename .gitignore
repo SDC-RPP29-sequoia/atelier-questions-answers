@@ -115,4 +115,5 @@ login.sh
 
 *.cer
 *.pem
-csvs/
+*.csv
+etl/
