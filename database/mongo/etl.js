@@ -3,9 +3,9 @@ const fs = require('fs');
 const { parseFile } = require('fast-csv');
 
 // file paths
-const answers = './csvs/answers.csv';
-const answersPhotos = './csvs/answers_photos.csv';
-const questions = './csvs/questions.csv';
+const answers = '../csvs/answers.csv';
+const answersPhotos = '../csvs/answers_photos.csv';
+const questions = '../csvs/questions.csv';
 
 // temp storage
 let records = []; // { _id: 0, questions: [] }
@@ -13,7 +13,7 @@ let questionIds = {}; // { 0: { p: 0, i: 0 }}
 let answerIds = {}; // { 0: { q: 0, i: 0 }}
 
 // mongodb import function
-const { importRecords } = require('../index.js');
+const { importRecords } = require('./index.js');
 
 // set new headers and set options
 const questionHeaders = ['id', 'productId', 'body', 'dateWritten', 'askerName', 'askerEmail', 'reported', 'helpful'];

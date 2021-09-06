@@ -11,7 +11,7 @@
     "test": "jest --coverage --testResultsProcessor=jest-sonar-reporter",
     "test-init": "jest --init",
     "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls",
-    "start": "nodemon server.js",
+    "start": "nodemon ./server/index.js",
     "mongo-start": "brew services start mongodb-community@4.4",
     "mongo-stop": "brew services stop mongodb-community@4.4",
     "build": "npx babel . --out-dir ./compiled --source-maps inline --ignore=node_modules,compiled --watch",
