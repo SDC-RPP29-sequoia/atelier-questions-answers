@@ -14,6 +14,8 @@
     "start": "nodemon ./server/index.js",
     "mongo-start": "brew services start mongodb-community@4.4",
     "mongo-stop": "brew services stop mongodb-community@4.4",
+    "mongo-transform": "node ./database/mongo/etl/Transform.js",
+    "mongo-load": "node ./database/mongo/etl/Load.js",
     "postgre-create": "node ./database/postgre/etl/createTables.js",
     "postgre-import": "node ./database/postgre/etl/importRecords.js",
     "build": "npx babel . --out-dir ./compiled --source-maps inline --ignore=node_modules,compiled --watch",

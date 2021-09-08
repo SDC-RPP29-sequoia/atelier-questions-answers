@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
-import questionSchema from './question.js';
+const { questionSchema } = require('./question.js');
 
 const productSchema = new mongoose.Schema({
   _id: Number,
   questions: [questionSchema]
 });
 
-const Product = mongoose.model('product', productSchema);
-
-export default Product;
+module.exports.Product = mongoose.model('product', productSchema);

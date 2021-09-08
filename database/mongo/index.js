@@ -1,34 +1,32 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/sdc');
-import Product from './models/product.js';
+const { Product } = require('./models/product.js');
 
-// METHODS
-const methods = {
-  addQuestion: () => {
+module.exports.addQuestion = () => {
 
-  },
-  addAnswer: () => {
-
-  },
-  reportQuestion: () => {
-
-  },
-  reportAnswer: () => {
-
-  },
-  markQuestionHelpful: () => {
-
-  },
-  markAnswerHelpful: () => {
-
-  },
-  getQuestionsAndAnswers: () => {
-
-  },
-  // ETL ONLY
-  importRecords: (records) => {
-    Product.insertMany(records);
-  }
 };
+module.exports.addAnswer = () => {
 
-export default methods;
+};
+module.exports.reportQuestion = () => {
+
+};
+module.exports.reportAnswer = () => {
+
+};
+module.exports.markQuestionHelpful = () => {
+
+};
+module.exports.markAnswerHelpful = () => {
+
+};
+module.exports.getQuestionsAndAnswers = (id) => {
+  Product.findById(id)
+    .then((record) => {
+      console.log(record);
+    });
+};
+// ETL ONLY
+module.exports.uploadRecords = async (records) => {
+  await Product.collection.insertMany(records);
+};

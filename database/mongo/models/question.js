@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-import answerSchema from './answer.js';
+const { answerSchema } = require('./answer.js');
 
-const questionSchema = new mongoose.Schema({
+module.exports.questionSchema = new mongoose.Schema({
   id: Number,
   productId: Number,
   body: String,
@@ -12,5 +12,3 @@ const questionSchema = new mongoose.Schema({
   helpful: Number,
   answers: [answerSchema]
 });
-
-export default questionSchema;
