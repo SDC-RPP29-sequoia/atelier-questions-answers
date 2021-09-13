@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-module.exports.answerSchema = new mongoose.Schema({
+const answerSchema = new mongoose.Schema({
   id: Number,
   questionId: Number,
   body: String,
@@ -11,3 +11,7 @@ module.exports.answerSchema = new mongoose.Schema({
   helpful: Number,
   photos: [String],
 });
+
+module.exports.answerSchema = answerSchema;
+
+module.exports.Answer = mongoose.model('answer', answerSchema);

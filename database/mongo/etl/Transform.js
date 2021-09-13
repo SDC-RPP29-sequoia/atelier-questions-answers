@@ -4,7 +4,7 @@ const path = require('path');
 
 // STORAGE FOR WHERE TO READ FROM / WRITE TO
 // Section parameters
-let records = [];
+let records = []; // { _id: 0, questions: [] };
 let questionIds = {}; // { 0: { p: 0, i: 0 }}
 let answerIds = {}; // { 0: { q: 0, i: 0 }}
 let section = 0;
@@ -122,6 +122,8 @@ const answerPhotoOnRead = (row) => {
     answer.photos = [row.url];
   }
 };
+
+// SAVE REFERENCES AS COLLECTIONS AT END OF ETL
 
 // CREATE A READ STREAM AND TRANSFORM DATA INTO JSON
 console.time('total time');
