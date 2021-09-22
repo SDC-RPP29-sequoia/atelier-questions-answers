@@ -16,9 +16,19 @@ const numSections = 50000;
 const questionPath = path.resolve(__dirname, '../../csvs/questions.csv');
 const questionOptions = {
   headers: ['id', 'productId', 'body', 'dateWritten', 'askerName', 'askerEmail', 'reported', 'helpful'],
-  renameHeaders: true,
+  renameHeaders: true
   // maxRows: 50
 };
+const questionTransform = (row) => ({
+  id: parseInt(row.id),
+  productId: parseInt(row.productId),
+  body: row.body,
+  dateWritten: parseInt(row.dateWritten),
+  askerName: row.askerName,
+  askerEmail: row.askerEmail,
+  reported: parseInt(row.reported),
+  helpful: parseInt(row.helpful)
+});
 
 // CB TO USE ON QUESTION ROW READ
 const questionOnRead = (row) => {
@@ -54,9 +64,19 @@ const questionOnRead = (row) => {
 const answerPath = path.resolve(__dirname, '../../csvs/answers.csv');
 const answerOptions = {
   headers: ['id', 'questionId', 'body', 'dateWritten', 'askerName', 'askerEmail', 'reported', 'helpful'],
-  renameHeaders: true,
+  renameHeaders: true
   // maxRows: 13
 };
+const answerTransform = (row) => ({
+  id: parseInt(row.id),
+  questionId: parseInt(row.questionId),
+  body: row.body,
+  dateWritten: parseInt(row.dateWritten),
+  askerName: row.askerName,
+  askerEmail: row.askerEmail,
+  reported: parseInt(row.reported),
+  helpful: parseInt(row.helpful)
+});
 
 // CB TO USE ON ANSWER ROW READ
 const answerOnRead = (row) => {
@@ -92,9 +112,14 @@ const answerOnRead = (row) => {
 const answerPhotoPath = path.resolve(__dirname, '../../csvs/answers_photos.csv');
 const answerPhotoOptions = {
   headers: ['id', 'answerId', 'url'],
-  renameHeaders: true,
+  renameHeaders: true
   // maxRows: 10
 };
+const answerPhotoTransform = (row) => ({
+  id: parseInt(row.id),
+  answerId: parseInt(row.answerId),
+  url: row.url
+});
 
 // CB TO USE ON ANSWERPHOTO ROW READ
 const answerPhotoOnRead = (row) => {
@@ -123,11 +148,10 @@ const answerPhotoOnRead = (row) => {
   }
 };
 
-// SAVE REFERENCES AS COLLECTIONS AT END OF ETL
-
 // CREATE A READ STREAM AND TRANSFORM DATA INTO JSON
 console.time('total time');
 parseFile(questionPath, questionOptions)
+  .transform(questionTransform)
   .on('error', error => console.error(error))
   .on('data', (row) => questionOnRead(row))
   .on('end', rowCount => {
@@ -136,6 +160,7 @@ parseFile(questionPath, questionOptions)
     console.log('questions transformed');
     console.timeLog('total time');
     parseFile(answerPath, answerOptions)
+      .transform(answerTransform)
       .on('error', error => console.error(error))
       .on('data', (row) => answerOnRead(row))
       .on('end', rowCount => {
@@ -144,6 +169,7 @@ parseFile(questionPath, questionOptions)
         console.log('answers transformed');
         console.timeLog('total time');
         parseFile(answerPhotoPath, answerPhotoOptions)
+          .transform(answerPhotoTransform)
           .on('error', error => console.error(error))
           .on('data', (row) => answerPhotoOnRead(row))
           .on('end', rowCount => {

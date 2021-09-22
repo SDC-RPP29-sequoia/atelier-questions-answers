@@ -1,4 +1,4 @@
-const db = require('./index.js');
+const db = require('..controllers/controllers.js');
 const logRecord = (data) => {
   console.log(JSON.stringify(data, null, 2));
 };
@@ -31,4 +31,4 @@ const logRecord = (data) => {
 // db.reportAnswer(123456);
 // db.markQuestionHelpful(35191);
 // db.markAnswerHelpful(1234567890);
-// db.getQuestionsAndAnswers(10001, logRecord);
+db.grabQuestions(10001, logRecord);

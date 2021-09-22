@@ -1,5 +1,5 @@
 const { getFileAsObject } = require('./fsHelpers.js');
-const { uploadRecords } = require('../index.js');
+const { uploadRecords } = require('../controllers/controllers.js');
 
 const uploadJsonToMongo = async () => {
   console.time('loading time');
