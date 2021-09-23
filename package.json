@@ -19,7 +19,8 @@
     "postgre-create": "node ./database/postgre/etl/createTables.js",
     "postgre-import": "node ./database/postgre/etl/importRecords.js",
     "build": "npx babel . --out-dir ./compiled --source-maps inline --ignore=node_modules,compiled --watch",
-    "dev": "npm run build & npm run start & npm run test"
+    "dev": "npm run build & npm run start & npm run test",
+    "load-testing": "k6 run ./tests/k6Tests.js"
   },
   "repository": {
     "type": "git",

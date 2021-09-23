@@ -13,13 +13,16 @@ const getQuestions = (req, res) => {
   const { product_id, page, count } = req.query;
   grabQuestions(parseInt(product_id))
     .then(record => {
+      if (!record[0]) {
+        return res.status(404).end();
+      }
       const results = filterOutReported(record[0]);
       const filteredRecord = { product_id: record[0]._id, results: results };
-      res.status(200).send(filteredRecord);
+      return res.status(200).send(filteredRecord);
     })
     .catch(err => {
       console.log(err);
-      res.status(400).end();
+      return res.status(400).end();
     });
 };
 

@@ -1,8 +1,8 @@
 const filterOutReportedQuestions = (doc) => {
   let questions = [];
-  doc.questions.forEach((question) => {
-    const answers = filterOutReportedAnswers(question);
-    try {
+  try {
+    doc.questions.forEach((question) => {
+      const answers = filterOutReportedAnswers(question);
       if (question.reported === 0) {
         questions.push({
           'question_id': question.id,
@@ -14,10 +14,10 @@ const filterOutReportedQuestions = (doc) => {
           'answers': answers
         });
       }
-    } catch (err) {
-      console.log('error occurred for question: ', question);
-    }
-  });
+    });
+  } catch (err) {
+    console.log(`error occurred for question at: ${doc.product_id}`);
+  }
   return questions;
 };
 
@@ -37,13 +37,13 @@ const filterOutReportedAnswers = (question) => {
       }
     });
   } catch (err) {
-    console.log('error occurred for answer: ', answer);
+    console.log(`error occurred for question at ${question.id}`);
   }
   return answers;
 };
 
-const getRandomInt = () => {
-  return Math.floor(Math.random() * 9990000000);
+const getRandomInt = (max) => {
+  return Math.floor(Math.random() * ( max ? max : 9990000000 ));
 };
 
 module.exports = {
