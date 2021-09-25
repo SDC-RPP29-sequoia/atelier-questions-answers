@@ -8,14 +8,13 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "jest --coverage --testResultsProcessor=jest-sonar-reporter",
-    "test-init": "jest --init",
-    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls",
+    "test": "nodemon --exec 'mocha -R min'",
     "start": "nodemon ./server/index.js",
-    "mongo-start": "brew services start mongodb-community@4.4",
-    "mongo-stop": "brew services stop mongodb-community@4.4",
-    "build": "npx babel . --out-dir ./compiled --source-maps inline --ignore=node_modules,compiled --watch",
-    "dev": "npm run build & npm run start & npm run test"
+    "mongo:transform": "node ./database/mongo/etl/Transform.js",
+    "mongo:load": "node ./database/mongo/etl/Load.js",
+    "postgre:create": "node ./database/postgre/etl/createTables.js",
+    "postgre:import": "node ./database/postgre/etl/importRecords.js",
+    "k6:testing": "k6 run ./k6Test/loadTesting.js"
   },
   "repository": {
     "type": "git",
@@ -35,34 +34,16 @@
   },
   "homepage": "https://github.com/SDC-RPP29-sequoia/atelier-questions-answers#readme",
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.15.0",
-    "@babel/eslint-parser": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "babel-jest": "^27.0.6",
     "coveralls": "^3.1.1",
-    "jest": "^27.0.6",
-    "jest-cli": "^27.0.6",
-    "jest-sonar-reporter": "^2.0.0",
     "nodemon": "^2.0.12"
   },
   "dependencies": {
-    "bluebird": "^3.7.2",
-    "cors": "^2.8.5",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "express": "^4.17.1",
     "fast-csv": "^4.3.6",
+    "mocha": "^9.1.1",
     "mongoose": "^6.0.2",
-    "pg": "^8.7.1",
-    "pg-hstore": "^2.3.4",
     "sequelize": "^6.6.5"
-  },
-  "jest": {
-    "^config$": "<rootDir>/configs/app-config.js"
-  },
-  "jestSonar": {
-    "sonar56x": true,
-    "reportPath": "testResults",
-    "reportFile": "sonar-report.xml",
-    "indent": 4
   }
 }

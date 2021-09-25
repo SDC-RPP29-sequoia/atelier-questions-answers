@@ -4,26 +4,17 @@
  *   https://github.com/reactorcore/eslint-config-hackreactor
  */
 
- module.exports = {
-  parser: '@babel/eslint-parser',
+module.exports = {
   parserOptions: {
-    'sourceType': 'module',
-    'allowImportExportEverywhere': true
+    'ecmaVersion': 2017
   },
-  // env: {
-  //   'es6': true
-  // },
-  // parserOptions: {
-  //   ecmaFeatures: {
-  //     'jsx': true
-  //   }
-  // },
+  env: {
+    'es6': true
+  },
   rules: {
     /* Indentation */
     'no-mixed-spaces-and-tabs': 2,
     'indent': [2, 2],
-    /* Variable cames */
-    'camelcase': 2,
     /* Language constructs */
     'curly': 2,
     'eqeqeq': [2, 'smart'],
