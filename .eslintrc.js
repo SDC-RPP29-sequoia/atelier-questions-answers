@@ -5,19 +5,12 @@
  */
 
 module.exports = {
-  parser: '@babel/eslint-parser',
   parserOptions: {
-    'sourceType': 'module',
-    'allowImportExportEverywhere': true
+    'ecmaVersion': 2017
   },
-  // env: {
-  //   'es6': true
-  // },
-  // parserOptions: {
-  //   ecmaFeatures: {
-  //     'jsx': true
-  //   }
-  // },
+  env: {
+    'es6': true
+  },
   rules: {
     /* Indentation */
     'no-mixed-spaces-and-tabs': 2,

@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/sdc');
+const dbName = process.env.TESTING ? 'sdcTests' : 'sdc';
+mongoose.connect(`mongodb://localhost/${dbName}`);
 const { Product } = require('../models/product.js');
 const { Question } = require('../models/question.js');
 const { Answer } = require('../models/answer.js');
 
 module.exports.grabQuestions = (productId, cb) => {
-  return Product.find({'_id': productId })
+  return Product.find({'_id': productId });
 };
 
 module.exports.grabAnswers = (questionId, cb) => {
-  return Product.collection.find({ 'questions.id': questionId })
+  return Product.collection.find({ 'questions.id': questionId });
 };
 
 module.exports.addQuestion = (productId, data) => {

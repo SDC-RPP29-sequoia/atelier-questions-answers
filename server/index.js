@@ -8,9 +8,6 @@ const {
   putAnswerHelpful, putAnswerReport
 } = require('./routes.js');
 
-// const mongoose = require('../database/mongo');
-const postgre = require('../database/postgre');
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

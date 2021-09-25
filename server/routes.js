@@ -7,7 +7,7 @@ const {
 } = require('../database/mongo/controllers/controllers.js');
 
 // HELPER FUNCTIONS
-const { filterOutReported, getRandomInt } = require('./helpers.js');
+const { filterOutReported, getRandomInt } = require('./routeHelpers.js');
 
 const getQuestions = (req, res) => {
   const { product_id, page, count } = req.query;
@@ -40,7 +40,6 @@ const getAnswers = (req, res) => {
 };
 
 const postQuestion = (req, res) => {
-  console.log(req.body);
   const { body, name, email, product_id } = req.body;
   const question = {
     id: getRandomInt(),
@@ -53,6 +52,13 @@ const postQuestion = (req, res) => {
     helpful: 0,
     answers: []
   };
+
+  if (body === undefined
+    || name === undefined
+    || email === undefined
+    || product_id === undefined) {
+    res.status(401).end();
+  }
 
   addQuestion(product_id, question)
     .then((record) => {
@@ -79,6 +85,13 @@ const postAnswer = (req, res) => {
     photos: photos ? photos : []
   };
 
+  if (body === undefined
+    || name === undefined
+    || email === undefined
+    || question_id === undefined) {
+    res.status(401).end();
+  }
+
   addAnswer(parseInt(question_id), answer)
     .then((record) => {
       res.status(201).end();
@@ -93,10 +106,12 @@ const putQuestionHelpful = (req, res) => {
   const { question_id } = req.params;
   markQuestionHelpful(parseInt(question_id))
     .then((record) => {
+      if (record.matchedCount === 0) {
+        throw err;
+      }
       res.status(204).end();
     })
     .catch((err) => {
-      console.log(err);
       res.status(401).end();
     });
 };
@@ -105,10 +120,12 @@ const putQuestionReport = (req, res) => {
   const { question_id } = req.params;
   reportQuestion(parseInt(question_id))
     .then((record) => {
+      if (record.matchedCount === 0) {
+        throw err;
+      }
       res.status(204).end();
     })
     .catch((err) => {
-      console.log(err);
       res.status(401).end();
     });
 };
@@ -117,10 +134,12 @@ const putAnswerHelpful = (req, res) => {
   const { answer_id } = req.params;
   markAnswerHelpful(parseInt(answer_id))
     .then((record) => {
+      if (record.matchedCount === 0) {
+        throw err;
+      }
       res.status(204).end();
     })
     .catch((err) => {
-      console.log(err);
       res.status(401).end();
     });
 };
@@ -129,10 +148,12 @@ const putAnswerReport = (req, res) => {
   const { answer_id } = req.params;
   reportAnswer(parseInt(answer_id))
     .then((record) => {
+      if (record.matchedCount === 0) {
+        throw err;
+      }
       res.status(204).end();
     })
     .catch((err) => {
-      console.log(err);
       res.status(401).end();
     });
 };
