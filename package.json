@@ -5,10 +5,10 @@
   "main": "server.js",
   "directories": {
     "doc": "docs",
-    "test": "tests"
+    "test": "test"
   },
   "scripts": {
-    "test": "nodemon --exec 'mocha -R min'",
+    "test": "nodemon --exec 'nyc mocha --exit'",
     "start": "nodemon ./server/index.js",
     "mongo:transform": "node ./database/mongo/etl/Transform.js",
     "mongo:load": "node ./database/mongo/etl/Load.js",
@@ -35,7 +35,8 @@
   "homepage": "https://github.com/SDC-RPP29-sequoia/atelier-questions-answers#readme",
   "devDependencies": {
     "coveralls": "^3.1.1",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "nyc": "^15.1.0"
   },
   "dependencies": {
     "chai": "^4.3.4",

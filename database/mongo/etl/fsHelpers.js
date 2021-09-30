@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// FS READ AND WRITE FUNCTIONS
 module.exports.getFileAsObject = (section) => {
   const filePath = path.resolve(__dirname, `./json/${section}.json`);
   try {

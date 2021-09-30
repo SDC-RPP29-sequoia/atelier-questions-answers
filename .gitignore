@@ -115,5 +115,9 @@ login.sh
 
 *.cer
 *.pem
+
+# csv files used during etl
 *.csv
-json/
+
+# etl files created during etl
+[0-20]*.json
