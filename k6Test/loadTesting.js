@@ -1,7 +1,7 @@
 const http = require('k6/http');
 const { sleep, check } = require('k6');
 const { Counter, Trend } = require('k6/metrics');
-const { getRandomInt } = require('../../server/helpers.js');
+const { getRandomInt } = require('../server/routeHelpers.js');
 
 export const requests = new Counter('http_reqs');
 

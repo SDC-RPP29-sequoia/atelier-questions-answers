@@ -33,10 +33,10 @@ const questionTransform = (row) => ({
 // CB TO USE ON QUESTION ROW READ
 const questionOnRead = (row) => {
   // get the product id
-  let id = parseInt(row.productId);
+  let id = row.productId;
 
   // only read save / read file if the current row is in a different section
-  let currentSection = Math.floor(row.productId / numSections);
+  let currentSection = Math.floor(id / numSections);
   if (currentSection !== section) {
     console.log(`switching from section ${section} to section ${currentSection}`);
     updateFile(section, records);
@@ -81,6 +81,8 @@ const answerTransform = (row) => ({
 // CB TO USE ON ANSWER ROW READ
 const answerOnRead = (row) => {
   let qId = row.questionId;
+  // check if right file is loaded if not load right one
+
   let { pId, index } = questionIds[qId];
 
   // only read save / read file if the current row is in a different section
