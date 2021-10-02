@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const dbName = process.env.TESTING ? 'sdcTests' : 'sdc';
-mongoose.connect(`mongodb://localhost/${dbName}`);
+mongoose.connect('mongodb://localhost/sdc');
 const { Product } = require('../models/product.js');
 const { Question } = require('../models/question.js');
 const { Answer } = require('../models/answer.js');

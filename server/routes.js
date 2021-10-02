@@ -4,7 +4,7 @@ const {
   addQuestion, addAnswer,
   reportQuestion, reportAnswer,
   markQuestionHelpful, markAnswerHelpful,
-} = require('../database/mongo/controllers/controllers.js');
+} = require('./controllers.js');
 
 // HELPER FUNCTIONS
 const { filterOutReported, getRandomInt } = require('./routeHelpers.js');
