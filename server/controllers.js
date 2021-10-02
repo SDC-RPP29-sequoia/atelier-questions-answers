@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/sdc');
-const { Product } = require('../models/product.js');
-const { Question } = require('../models/question.js');
-const { Answer } = require('../models/answer.js');
+const dbURL = process.env.dbURL;
+mongoose.connect(`mongodb://${dbURL}/sdc`);
+const { Product } = require('./models/product.js');
+const { Question } = require('./models/question.js');
+const { Answer } = require('./models/answer.js');
 
 module.exports.grabQuestions = (productId, cb) => {
   return Product.find({'_id': productId });
