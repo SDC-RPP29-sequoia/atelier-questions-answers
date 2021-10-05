@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const mongoose = require('mongoose');
-mongoose.connect(process.env.DBURL);
+mongoose.connect(process.env.MONGOURL);
 const { Product } = require('./models/product.js');
 const { Question } = require('./models/question.js');
 const { Answer } = require('./models/answer.js');
