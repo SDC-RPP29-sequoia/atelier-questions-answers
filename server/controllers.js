@@ -1,6 +1,7 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const mongoose = require('mongoose');
-const dbURL = process.env.dbURL;
-mongoose.connect(`mongodb://${dbURL}/sdc`);
+mongoose.connect(process.env.DBURL);
 const { Product } = require('./models/product.js');
 const { Question } = require('./models/question.js');
 const { Answer } = require('./models/answer.js');
