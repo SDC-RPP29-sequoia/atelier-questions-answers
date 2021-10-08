@@ -4,12 +4,14 @@ const {
   addQuestion, addAnswer,
   reportQuestion, reportAnswer,
   markQuestionHelpful, markAnswerHelpful,
-} = require('./controllers.js');
+} = require('../database/mongo/controllers/controllers.js');
+
+const { client } = require('./index.js');
 
 // HELPER FUNCTIONS
 const { filterOutReported, getRandomInt } = require('./routeHelpers.js');
 
-const getQuestions = (req, res) => {
+const getQuestions = (req, res, next) => {
   const { product_id, page, count } = req.query;
   grabQuestions(parseInt(product_id))
     .then(record => {
@@ -18,6 +20,10 @@ const getQuestions = (req, res) => {
       }
       const results = filterOutReported(record[0]);
       const filteredRecord = { product_id: record[0]._id, results: results };
+
+      // Redis cahce
+      client.setex(product_id, 3600, filteredRecord);
+
       return res.status(200).send(filteredRecord);
     })
     .catch(err => {
